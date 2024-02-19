@@ -12,6 +12,7 @@ public class ServicioEquipos implements RespositorioEquipo, Serializable {
 
     @Override
     public void registrarEquipo(Equipo equipo) {
+
         UtilidadArchivos.guardar("datoequipo", equipo);
     }
 }
