@@ -6,7 +6,7 @@ public class UtilidadArchivos {
     public static boolean guardar(String archivo, Object objeto){
         try {
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(archivo));
-            oos.writeObject(objeto);
+            oos.writeObject(objeto.toString());
         } catch (IOException e) {
             return false;
         }

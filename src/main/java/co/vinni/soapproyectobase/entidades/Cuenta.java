@@ -20,4 +20,18 @@ public class Cuenta implements Serializable {
     private boolean activa;
     private long saldo;
 
+
+    @Override
+    public String toString() {
+        return "Cuenta{" +
+                "nombre='" + nombre + '\'' +
+                ", apellidos='" + apellidos + '\'' +
+                ", tipoDocumento='" + tipoDocumento + '\'' +
+                ", numerodeCedula=" + numerodeCedula +
+                ", numerodeCelular=" + numerodeCelular +
+                ", numeroDeCuenta=" + numeroDeCuenta +
+                ", activa=" + activa +
+                ", saldo=" + saldo +
+                '}';
+    }
 }
