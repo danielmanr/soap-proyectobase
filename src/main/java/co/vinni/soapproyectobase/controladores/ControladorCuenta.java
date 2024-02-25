@@ -14,5 +14,9 @@ public class ControladorCuenta {
         servicioCuenta.registrarCuenta(cuenta);
     }
 
+    public void leerCuenta(String nombreCuenta){
+        servicioCuenta.traeDatosCuenta(nombreCuenta);
+    }
+
 
 }

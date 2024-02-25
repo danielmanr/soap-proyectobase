@@ -7,13 +7,12 @@ import java.io.*;
 import java.util.*;
 
 public class UtilidadArchivos {
+    private static Cuenta cuenta;
+
     public static boolean guardar(String archivo, Object objeto){
-        long numeroCuenta = generarNumeroCuenta();
-
-
         try {
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(archivo));
-            oos.writeObject(objeto.toString());
+            oos.writeObject(objeto);
         } catch (IOException e) {
             return false;
         }
@@ -34,25 +33,6 @@ public class UtilidadArchivos {
     }
 
 
-    public static void generarNumeroCuenta(){
-
-        int cantidadNumeros = 10; // Cantidad de números aleatorios únicos que deseas generar
-        List<Integer> numeros = new ArrayList<>();
-
-        // Llenar la lista con los números del 1 al 100 (o el rango que desees)
-        for (int i = 1; i <= 9; i++) {
-            numeros.add(i);
-        }
-
-        // Mezclar la lista para obtener un orden aleatorio
-        Collections.shuffle(numeros);
-
-        // Imprimir los primeros "cantidadNumeros" elementos de la lista
-        for (int i = 0; i < cantidadNumeros; i++) {
-            System.out.println(numeros.get(i));
-        }
-
-    }
 
     public static boolean verificarExistenciaCuenta(){
 
@@ -86,8 +66,9 @@ public class UtilidadArchivos {
         } catch (IOException e) {
             System.out.println("Error al leer el archivo: " + e.getMessage());
         }
-    return clientes;
+    return true;
     }
+
 
 
 }
