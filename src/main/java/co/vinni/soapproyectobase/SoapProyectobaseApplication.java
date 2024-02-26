@@ -19,11 +19,11 @@ public class SoapProyectobaseApplication {
 //        Cuenta cuenta = new Cuenta();
 //        cuenta.setNombre("pruebaCliente2");
 //        cuenta.setApellidos("Transferencia2");
-//        cuenta.setNumerodeCedula(54321);
+//        cuenta.setNumerodeCedula("10302");
 //        cuenta.setTipoDocumento("cc");
 //        cuenta.setSaldo(0);
 //        cuenta.setActiva(true);
-//        cuenta.setNumerodeCelular("320122321");
+//        cuenta.setNumerodeCelular("32122212");
 //        if(controlaCuenta.registrarCuenta(cuenta)){
 //            System.out.printf("Usuario Registrado con Exito");
 //        }else{
@@ -40,8 +40,8 @@ public class SoapProyectobaseApplication {
 
 
         //hacer una consignacion por numero
-        ControladorCuenta controlaCuenta = new ControladorCuenta();
-        controlaCuenta.transferencia(3000,"320122321");
+//        ControladorCuenta controlaCuenta = new ControladorCuenta();
+//        controlaCuenta.transferencia(3000,"320122321");
 
 
 
@@ -53,7 +53,9 @@ public class SoapProyectobaseApplication {
 
         //ver estado de cuenta;
         ControladorCuenta controladorCuenta = new ControladorCuenta();
-
+        Cuenta cuenta = new Cuenta();
+        cuenta = controladorCuenta.estadoCuenta("10301","346187295");
+        System.out.println(cuenta);
 
 
 

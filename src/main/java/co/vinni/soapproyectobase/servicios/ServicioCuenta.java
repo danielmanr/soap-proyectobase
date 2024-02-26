@@ -18,7 +18,7 @@ public class ServicioCuenta implements RepositorioCuenta, Serializable {
         cliente.setApellido(cuenta.getApellidos());
         cliente.setNumeroIdentificacion(cuenta.getNumerodeCedula());
         cliente.setNumeroCelular(cuenta.getNumerodeCelular());
-        cuenta.setNumeroDeCuenta(Integer.parseInt(generarNumeroCuenta()));
+        cuenta.setNumeroDeCuenta(generarNumeroCuenta());
         if(UtilidadArchivos.guardarCliente("Clientes",cliente.getApellido()+","+cliente.getNombre()+","+cliente.getNumeroIdentificacion()+","+cliente.getNumeroCelular()+","+cuenta.getNumeroDeCuenta())){
             cliente.setNumeroCuenta(cuenta.getNumeroDeCuenta());
             UtilidadArchivos.guardar("datoCuenta"+cuenta.getNumeroDeCuenta(),cuenta);
@@ -29,15 +29,11 @@ public class ServicioCuenta implements RepositorioCuenta, Serializable {
     }
 
 
-    public Cuenta estadoCuenta(String numeroCedula){
+    public Cuenta estadoCuenta(String numeroCedula, String numeroCuenta){
         Cuenta cuenta = new Cuenta();
-        if(!buscarCliente(Integer.parseInt(numeroCedula))){
+        if(!buscarCliente(numeroCedula)){
             return cuenta;
         }
-        String [] datosCliente = buscarClienteCelular(cuenta.getNumerodeCelular());
-        int cedula = Integer.parseInt(datosCliente[0]);
-        double celular = Integer.parseInt(datosCliente[1]);
-        double numeroCuenta = Integer.parseInt(datosCliente[2]);
         cuenta = (Cuenta)UtilidadArchivos.obtener("datoCuenta"+numeroCuenta);
         return cuenta;
     }
@@ -46,34 +42,35 @@ public class ServicioCuenta implements RepositorioCuenta, Serializable {
     public boolean realizarTransferencia(double valor, String numeroCelular){
 
         String [] datosCliente = buscarClienteCelular(numeroCelular);
-        int cedula = Integer.parseInt(datosCliente[0]);
-        double celular = Integer.parseInt(datosCliente[1]);
-        double numeroCuenta = Integer.parseInt(datosCliente[2]);
+        String cedula = datosCliente[0];
+        String celular = datosCliente[1];
+        String numeroCuenta = datosCliente[2];
         if(!buscarCliente(cedula)){
             return false;
         }
-        if(!realizarConsignacion((int)valor,cedula,(int)numeroCuenta)){
+        if(!realizarConsignacion((int)valor,cedula,numeroCuenta)){
             return false;
         }
         return true;
     }
 
 
-    public boolean realizarConsignacion(int valor, int numeroCedula,int numeroCuenta){
+    public boolean realizarConsignacion(double valor, String numeroCedula,String numeroCuenta){
         if(buscarCliente(numeroCedula)){
             String ruta = "C:\\Users\\Daniel\\IdeaProjects\\soap-proyectobase\\datoCuenta"+numeroCuenta;
             if(buscarCuenta(ruta)){
                 Cuenta cuenta = new Cuenta();
-                cuenta = (Cuenta)UtilidadArchivos.obtener("datoCuenta"+Integer.toString(numeroCuenta));
-                long nuevoValor = cuenta.getSaldo() + valor ;
+                cuenta = (Cuenta)UtilidadArchivos.obtener("datoCuenta"+numeroCuenta);
+                double nuevoValor = cuenta.getSaldo() + valor ;
                 cuenta.setSaldo(nuevoValor);
-                UtilidadArchivos.guardar("datoCuenta"+Integer.toString(numeroCuenta),cuenta);
+                UtilidadArchivos.guardar("datoCuenta"+numeroCuenta,cuenta);
             }
         }else{
             return false;
         }
         return true;
     }
+
 
     private boolean buscarCuenta(String ruta) {
         File archivo = new File(ruta);
@@ -110,7 +107,7 @@ public class ServicioCuenta implements RepositorioCuenta, Serializable {
     }
 
 
-    public boolean buscarCliente(int numeroCedula){
+    public boolean buscarCliente(String numeroCedula){
         String nombreArchivo = "Clientes";
         try {
             BufferedReader br = new BufferedReader(new FileReader(nombreArchivo));
@@ -119,7 +116,7 @@ public class ServicioCuenta implements RepositorioCuenta, Serializable {
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
                 // Procesar los datos como desees
-                if(datos[2].equals(Integer.toString(numeroCedula))){
+                if(datos[2].equals(numeroCedula)){
                     return true;
                 }
             }

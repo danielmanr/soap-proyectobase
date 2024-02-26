@@ -16,9 +16,9 @@ public class Cuenta implements Serializable {
     private String tipoDocumento;
     private String numerodeCedula;
     private String numerodeCelular;
-    private int numeroDeCuenta;
+    private String numeroDeCuenta;
     private boolean activa;
-    private long saldo;
+    private double saldo;
 
 
     @Override

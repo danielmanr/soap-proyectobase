@@ -19,7 +19,7 @@ public class ControladorCuenta {
     }
 
 
-    public boolean Consignacion(int valor, int numeroCedula,int numeroCuenta){
+    public boolean Consignacion(double valor, String numeroCedula,String numeroCuenta){
 
         if(!servicioCuenta.realizarConsignacion(valor,numeroCedula,numeroCuenta)){
             return false;
@@ -33,8 +33,8 @@ public class ControladorCuenta {
     }
 
 
-    public Cuenta estadoCuenta(String numeroCeunta){
-        return servicioCuenta.estadoCuenta(numeroCeunta);
+    public Cuenta estadoCuenta(String numeroCedula ,String numeroCuenta){
+        return servicioCuenta.estadoCuenta(numeroCedula, numeroCuenta);
 
     }
 

@@ -12,7 +12,7 @@ import java.io.Serializable;
 public class Cliente implements Serializable {
     public String nombre;
     public String apellido;
-    public long numeroIdentificacion;
+    public String numeroIdentificacion;
     private String numeroCuenta;
     private String numeroCelular;
 
