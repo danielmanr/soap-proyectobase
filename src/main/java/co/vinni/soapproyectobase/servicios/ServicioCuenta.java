@@ -22,6 +22,7 @@ public class ServicioCuenta implements RepositorioCuenta, Serializable {
         if(UtilidadArchivos.guardarCliente("Clientes",cliente.getApellido()+","+cliente.getNombre()+","+cliente.getNumeroIdentificacion()+","+cliente.getNumeroCelular()+","+cuenta.getNumeroDeCuenta())){
             cliente.setNumeroCuenta(cuenta.getNumeroDeCuenta());
             UtilidadArchivos.guardar("datoCuenta"+cuenta.getNumeroDeCuenta(),cuenta);
+            System.out.println("Numero de Cuenta"+cuenta.getNumeroDeCuenta());
             return true;
         }else{
             return false;
