@@ -13,13 +13,6 @@ public class Cliente implements Serializable {
     public String nombre;
     public String apellido;
     public long numeroIdentificacion;
+    private int numeroCuenta;
 
-    @Override
-    public String toString() {
-        return "Cliente{" +
-                "nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", numeroIdentificacion=" + numeroIdentificacion +
-                '}';
-    }
 }

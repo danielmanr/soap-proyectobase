@@ -9,9 +9,21 @@ import org.springframework.stereotype.Component;
 public class ControladorCuenta {
     ServicioCuenta servicioCuenta = new ServicioCuenta();
 
-    public void registrarCuenta(Cuenta cuenta) {
+    public boolean registrarCuenta(Cuenta cuenta) {
 
-        servicioCuenta.registrarCuenta(cuenta);
+        if(servicioCuenta.registrarCuenta(cuenta)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public boolean Consignacion(int valor, int numeroCedula,int numeroCuenta){
+
+        if(!servicioCuenta.realizarConsignacion(valor,numeroCedula,numeroCuenta)){
+            return false;
+        }
+        return true;
     }
 
     public void leerCuenta(String nombreCuenta){
