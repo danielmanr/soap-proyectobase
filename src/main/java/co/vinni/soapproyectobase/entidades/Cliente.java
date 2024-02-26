@@ -13,6 +13,7 @@ public class Cliente implements Serializable {
     public String nombre;
     public String apellido;
     public long numeroIdentificacion;
-    private int numeroCuenta;
+    private String numeroCuenta;
+    private String numeroCelular;
 
 }

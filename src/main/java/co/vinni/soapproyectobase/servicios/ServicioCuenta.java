@@ -17,14 +17,45 @@ public class ServicioCuenta implements RepositorioCuenta, Serializable {
         cliente.setNombre(cuenta.getNombre());
         cliente.setApellido(cuenta.getApellidos());
         cliente.setNumeroIdentificacion(cuenta.getNumerodeCedula());
-        if(UtilidadArchivos.guardarCliente("Clientes",cliente.getApellido()+","+cliente.getNombre()+","+cliente.getNumeroIdentificacion())){
-            cuenta.setNumeroDeCuenta(Integer.parseInt(generarNumeroCuenta()));
+        cliente.setNumeroCelular(cuenta.getNumerodeCelular());
+        cuenta.setNumeroDeCuenta(Integer.parseInt(generarNumeroCuenta()));
+        if(UtilidadArchivos.guardarCliente("Clientes",cliente.getApellido()+","+cliente.getNombre()+","+cliente.getNumeroIdentificacion()+","+cliente.getNumeroCelular()+","+cuenta.getNumeroDeCuenta())){
             cliente.setNumeroCuenta(cuenta.getNumeroDeCuenta());
             UtilidadArchivos.guardar("datoCuenta"+cuenta.getNumeroDeCuenta(),cuenta);
             return true;
         }else{
             return false;
         }
+    }
+
+
+    public Cuenta estadoCuenta(String numeroCedula){
+        Cuenta cuenta = new Cuenta();
+        if(!buscarCliente(Integer.parseInt(numeroCedula))){
+            return cuenta;
+        }
+        String [] datosCliente = buscarClienteCelular(cuenta.getNumerodeCelular());
+        int cedula = Integer.parseInt(datosCliente[0]);
+        double celular = Integer.parseInt(datosCliente[1]);
+        double numeroCuenta = Integer.parseInt(datosCliente[2]);
+        cuenta = (Cuenta)UtilidadArchivos.obtener("datoCuenta"+numeroCuenta);
+        return cuenta;
+    }
+
+
+    public boolean realizarTransferencia(double valor, String numeroCelular){
+
+        String [] datosCliente = buscarClienteCelular(numeroCelular);
+        int cedula = Integer.parseInt(datosCliente[0]);
+        double celular = Integer.parseInt(datosCliente[1]);
+        double numeroCuenta = Integer.parseInt(datosCliente[2]);
+        if(!buscarCliente(cedula)){
+            return false;
+        }
+        if(!realizarConsignacion((int)valor,cedula,(int)numeroCuenta)){
+            return false;
+        }
+        return true;
     }
 
 
@@ -97,6 +128,30 @@ public class ServicioCuenta implements RepositorioCuenta, Serializable {
             System.err.println("Error al leer el archivo: " + e.getMessage());
         }
         return false;
+    }
+
+
+    public String[] buscarClienteCelular(String numeroCelular){
+        String nombreArchivo = "Clientes";
+        String celularCedula [] = new String[3];
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(nombreArchivo));
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] datos = linea.split(",");
+                // Procesar los datos como desees
+                if(datos[3].equals(numeroCelular)){
+                    celularCedula[0] = datos[2];
+                    celularCedula[1] = datos[3];
+                    celularCedula[2] = datos[4];
+                    return celularCedula;
+                }
+            }
+            br.close();
+        } catch (IOException e) {
+            System.err.println("Error al leer el archivo: " + e.getMessage());
+        }
+        return celularCedula;
     }
 
 }

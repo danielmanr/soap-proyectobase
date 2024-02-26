@@ -14,8 +14,8 @@ public class Cuenta implements Serializable {
     private String nombre;
     private String apellidos;
     private String tipoDocumento;
-    private long numerodeCedula;
-    private long numerodeCelular;
+    private String numerodeCedula;
+    private String numerodeCelular;
     private int numeroDeCuenta;
     private boolean activa;
     private long saldo;

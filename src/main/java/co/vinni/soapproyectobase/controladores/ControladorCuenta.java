@@ -18,6 +18,7 @@ public class ControladorCuenta {
         }
     }
 
+
     public boolean Consignacion(int valor, int numeroCedula,int numeroCuenta){
 
         if(!servicioCuenta.realizarConsignacion(valor,numeroCedula,numeroCuenta)){
@@ -26,8 +27,15 @@ public class ControladorCuenta {
         return true;
     }
 
-    public void leerCuenta(String nombreCuenta){
-        servicioCuenta.traeDatosCuenta(nombreCuenta);
+
+    public boolean transferencia(double valor, String numeroCelular){
+        return servicioCuenta.realizarTransferencia(valor,numeroCelular);
+    }
+
+
+    public Cuenta estadoCuenta(String numeroCeunta){
+        return servicioCuenta.estadoCuenta(numeroCeunta);
+
     }
 
 
