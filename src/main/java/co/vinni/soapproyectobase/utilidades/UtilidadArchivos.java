@@ -82,7 +82,7 @@ public class UtilidadArchivos {
             for (String linea : lineas) {
                 writer.write(linea + "\n");
             }
-            System.out.println("Archivo '" + nombreArchivo + "' generado o actualizado exitosamente.");
+            System.out.println("Cuenta generada o actualizado exitosamente.");
         } catch (IOException e) {
             e.printStackTrace();
         }

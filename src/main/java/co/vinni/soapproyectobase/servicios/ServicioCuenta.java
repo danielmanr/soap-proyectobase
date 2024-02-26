@@ -22,7 +22,7 @@ public class ServicioCuenta implements RepositorioCuenta, Serializable {
         if(UtilidadArchivos.guardarCliente("Clientes",cliente.getApellido()+","+cliente.getNombre()+","+cliente.getNumeroIdentificacion()+","+cliente.getNumeroCelular()+","+cuenta.getNumeroDeCuenta())){
             cliente.setNumeroCuenta(cuenta.getNumeroDeCuenta());
             UtilidadArchivos.guardar("datoCuenta"+cuenta.getNumeroDeCuenta(),cuenta);
-            System.out.println("Numero de Cuenta"+cuenta.getNumeroDeCuenta());
+            System.out.println("Numero de Cuenta "+cuenta.getNumeroDeCuenta());
             return true;
         }else{
             return false;
@@ -80,12 +80,6 @@ public class ServicioCuenta implements RepositorioCuenta, Serializable {
         } else {
             return false;
         }
-    }
-
-
-    public void traeDatosCuenta(String nombreCuenta){
-        UtilidadArchivos.obtener(nombreCuenta);
-
     }
 
 
@@ -150,6 +144,24 @@ public class ServicioCuenta implements RepositorioCuenta, Serializable {
             System.err.println("Error al leer el archivo: " + e.getMessage());
         }
         return celularCedula;
+    }
+
+
+    public boolean retiroCuenta(String numeroCuenta, double valor){
+        if(!buscarCuenta("datoCuenta"+numeroCuenta)){
+            return false;
+        }
+        Cuenta cuenta = (Cuenta)UtilidadArchivos.obtener("datoCuenta"+numeroCuenta);
+        double saldo = cuenta.getSaldo();
+        if(saldo >= valor){
+            saldo = cuenta.getSaldo() - valor;
+            cuenta.setSaldo(saldo);
+            UtilidadArchivos.guardar("datoCuenta"+numeroCuenta,cuenta);
+            return true;
+        }
+        System.out.println("Fondos insuficientes");
+        return false;
+
     }
 
 }

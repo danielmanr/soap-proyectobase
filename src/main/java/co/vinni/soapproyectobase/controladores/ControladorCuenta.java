@@ -39,4 +39,9 @@ public class ControladorCuenta {
     }
 
 
+    public Boolean retiroCuenta(String numeroCuenta, double valor){
+        return servicioCuenta.retiroCuenta(numeroCuenta,valor);
+    }
+
+
 }
