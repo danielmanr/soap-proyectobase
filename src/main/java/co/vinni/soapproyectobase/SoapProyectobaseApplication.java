@@ -57,6 +57,7 @@ public class SoapProyectobaseApplication {
 //
 //        cuenta = controladorCuenta.estadoCuenta("10301","346187295");
 //        System.out.println(cuenta);
+        System.out.println("adasdas");
         Scanner lectura = new Scanner (System.in);
         ControladorCuenta controlaCuenta = new ControladorCuenta();
         Cuenta cuenta = new Cuenta();
