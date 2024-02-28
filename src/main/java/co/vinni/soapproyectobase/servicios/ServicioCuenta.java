@@ -147,6 +147,7 @@ public class ServicioCuenta implements RepositorioCuenta, Serializable {
     }
 
 
+
     public boolean retiroCuenta(String numeroCuenta, double valor){
         if(!buscarCuenta("datoCuenta"+numeroCuenta)){
             return false;
