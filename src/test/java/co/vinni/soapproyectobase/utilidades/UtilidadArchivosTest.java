@@ -1,11 +1,8 @@
 package co.vinni.soapproyectobase.utilidades;
 
-import co.vinni.soapproyectobase.entidades.Equipo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class UtilidadArchivosTest {
 

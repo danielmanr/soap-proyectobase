@@ -11,11 +11,7 @@ import java.io.Serializable;
 public class Cuenta implements Serializable {
 
 
-    private String nombre;
-    private String apellidos;
-    private String tipoDocumento;
-    private String numerodeCedula;
-    private String numerodeCelular;
+    private int cliente;
     private String numeroDeCuenta;
     private boolean activa;
     private double saldo;
@@ -24,15 +20,10 @@ public class Cuenta implements Serializable {
     @Override
     public String toString() {
         return "Cuenta{" +
-                "nombre='" + nombre + '\'' +
-                ", apellidos='" + apellidos + '\'' +
-                ", tipoDocumento='" + tipoDocumento + '\'' +
-                ", numerodeCedula=" + numerodeCedula +
-                ", numerodeCelular=" + numerodeCelular +
-                ", numeroDeCuenta=" + numeroDeCuenta +
+                "cliente=" + cliente +
+                ", numeroDeCuenta='" + numeroDeCuenta + '\'' +
                 ", activa=" + activa +
                 ", saldo=" + saldo +
                 '}';
     }
-
 }
