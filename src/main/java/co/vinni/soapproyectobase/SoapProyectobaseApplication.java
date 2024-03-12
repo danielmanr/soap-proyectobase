@@ -1,6 +1,8 @@
 package co.vinni.soapproyectobase;
 
+import co.vinni.soapproyectobase.controladores.ControladorCliente;
 import co.vinni.soapproyectobase.controladores.ControladorCuenta;
+import co.vinni.soapproyectobase.entidades.Cliente;
 import co.vinni.soapproyectobase.entidades.Cuenta;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,8 +17,24 @@ import java.util.Scanner;
 public class SoapProyectobaseApplication {
 
     public static void main(String[] args) {
-        //SpringApplication.run(SoapProyectobaseApplication.class, args);
+        SpringApplication.run(SoapProyectobaseApplication.class, args);
 
+        ControladorCuenta cCuenta = new ControladorCuenta();
+        ControladorCliente cCliente = new ControladorCliente();
+        Cliente cliente = new Cliente();
+        Cuenta cuenta = new Cuenta();
+
+        cliente.setNombre("Daniel");
+        cliente.setApellido("Apellido");
+        cliente.setNumeroCelular("3119321223");
+        cliente.setNumeroIdentificacion("103044444444");
+        cCliente.guardarCliente(cliente);
+        cuenta.
+
+
+
+
+        /*
         Scanner lectura = new Scanner (System.in);
         ControladorCuenta controlaCuenta = new ControladorCuenta();
         Cuenta cuenta = new Cuenta();
@@ -113,5 +131,7 @@ public class SoapProyectobaseApplication {
                 salir = true;
             }
         }
+
+         */
     }
 }

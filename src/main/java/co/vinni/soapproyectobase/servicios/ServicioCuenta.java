@@ -4,29 +4,26 @@ import co.vinni.soapproyectobase.entidades.Cliente;
 import co.vinni.soapproyectobase.entidades.Cuenta;
 import co.vinni.soapproyectobase.repositorios.RepositorioCuenta;
 import co.vinni.soapproyectobase.utilidades.UtilidadArchivos;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ServicioCuenta implements RepositorioCuenta, Serializable {
-    @Override
+@Service
+public class ServicioCuenta {
+    @Autowired
+    RepositorioCuenta repocuenta;
+
+
     public boolean registrarCuenta(Cuenta cuenta){
-        Cliente cliente = new Cliente();
-        cliente.setNombre(cuenta.getNombre());
-        cliente.setApellido(cuenta.getApellidos());
-        cliente.setNumeroIdentificacion(cuenta.getNumerodeCedula());
-        cliente.setNumeroCelular(cuenta.getNumerodeCelular());
-        cuenta.setNumeroDeCuenta(generarNumeroCuenta());
-        if(UtilidadArchivos.guardarCliente("Clientes",cliente.getApellido()+","+cliente.getNombre()+","+cliente.getNumeroIdentificacion()+","+cliente.getNumeroCelular()+","+cuenta.getNumeroDeCuenta())){
-            cliente.setNumeroCuenta(cuenta.getNumeroDeCuenta());
-            UtilidadArchivos.guardar("datoCuenta"+cuenta.getNumeroDeCuenta(),cuenta);
-            System.out.println("Numero de Cuenta "+cuenta.getNumeroDeCuenta());
+
+        if(repocuenta.save(cuenta) != null){
             return true;
-        }else{
-            return false;
         }
+        return false;
     }
 
 
@@ -57,6 +54,7 @@ public class ServicioCuenta implements RepositorioCuenta, Serializable {
 
 
     public boolean realizarConsignacion(double valor, String numeroCedula,String numeroCuenta){
+        /*
         if(buscarCliente(numeroCedula)){
             String ruta = "C:\\Users\\Daniel\\IdeaProjects\\soap-proyectobase\\datoCuenta"+numeroCuenta;
             if(buscarCuenta(ruta)){
@@ -69,6 +67,9 @@ public class ServicioCuenta implements RepositorioCuenta, Serializable {
         }else{
             return false;
         }
+        return true;
+
+         */
         return true;
     }
 
@@ -149,6 +150,7 @@ public class ServicioCuenta implements RepositorioCuenta, Serializable {
 
 
     public boolean retiroCuenta(String numeroCuenta, double valor){
+        /*
         if(!buscarCuenta("datoCuenta"+numeroCuenta)){
             return false;
         }
@@ -163,6 +165,11 @@ public class ServicioCuenta implements RepositorioCuenta, Serializable {
         System.out.println("Fondos insuficientes");
         return false;
 
+        */
+        return true;
+
     }
+
+
 
 }

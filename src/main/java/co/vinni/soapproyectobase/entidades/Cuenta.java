@@ -1,20 +1,32 @@
 package co.vinni.soapproyectobase.entidades;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-@Data
+
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity(name = "Cuenta")
+@Table(name = "Cuentas")
 public class Cuenta implements Serializable {
 
-
-    private int cliente;
+    @Id
+    private Long idCuenta;
+    @Column(name = "Cliente", nullable = false)
+    private Long cliente;
+    @Column(name = "NumeroCuenta", nullable = false)
     private String numeroDeCuenta;
+    @Column(name = "Activa", nullable = false)
     private boolean activa;
+    @Column(name = "Saldo", nullable = false)
     private double saldo;
+
 
 
     @Override
@@ -26,4 +38,5 @@ public class Cuenta implements Serializable {
                 ", saldo=" + saldo +
                 '}';
     }
+
 }
