@@ -4,19 +4,22 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "Cliente")
+@Entity
 @Table(name = "Clientes")
+@Setter
+@Getter
+@ToString
 public class Cliente implements Serializable {
     @Id
+    @Column
+    (name = "idCliente", nullable = false)
     private long idCliente;
     @Column(name = "Nombre", nullable = false)
     private String nombre;

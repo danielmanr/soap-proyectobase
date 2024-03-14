@@ -29,7 +29,7 @@ public class SoapProyectobaseApplication {
         cliente.setNumeroCelular("3119321223");
         cliente.setNumeroIdentificacion("103044444444");
         cCliente.guardarCliente(cliente);
-        cuenta.
+
 
 
 

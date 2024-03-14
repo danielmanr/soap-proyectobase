@@ -19,7 +19,7 @@ public class Cuenta implements Serializable {
     @Id
     private Long idCuenta;
     @Column(name = "Cliente", nullable = false)
-    private Long cliente;
+    private int cliente;
     @Column(name = "NumeroCuenta", nullable = false)
     private String numeroDeCuenta;
     @Column(name = "Activa", nullable = false)

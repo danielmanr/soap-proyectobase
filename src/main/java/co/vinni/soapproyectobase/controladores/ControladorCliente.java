@@ -8,12 +8,8 @@ public class ControladorCliente {
     ServicioCliente servicio = new ServicioCliente();
 
 
-    public boolean guardarCliente(Cliente cliente){
-
-        return servicio.registrarCliente(cliente);
-
-
-
+    public void guardarCliente(Cliente cliente){
+        servicio.registrarCliente(cliente);
     }
 
 }

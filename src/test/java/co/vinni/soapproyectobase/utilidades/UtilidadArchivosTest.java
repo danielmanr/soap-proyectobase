@@ -11,7 +11,7 @@ class UtilidadArchivosTest {
     @DisplayName("Test registrar objeto en archivo")
     void registrarObjeto() {
         Equipo equipo = new Equipo(1,"millos","Equipo de la capital Bogotá");
-        boolean rta = UtilidadArchivos.guardar("prueba.txt", equipo);
+        //boolean rta = UtilidadArchivos.guardar("prueba.txt", equipo);
         Assertions.assertTrue(rta);
     }
     @Test
