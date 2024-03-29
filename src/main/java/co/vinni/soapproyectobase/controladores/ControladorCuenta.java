@@ -2,46 +2,32 @@ package co.vinni.soapproyectobase.controladores;
 
 import co.vinni.soapproyectobase.entidades.Cuenta;
 import co.vinni.soapproyectobase.servicios.ServicioCuenta;
+import lombok.extern.log4j.Log4j2;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
-
+@Log4j2
+@Controller
 public class ControladorCuenta {
-    ServicioCuenta servicioCuenta = new ServicioCuenta();
 
-    public boolean registrarCuenta(Cuenta cuenta) {
-
-        if(servicioCuenta.registrarCuenta(cuenta)){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-
-    public boolean Consignacion(double valor, String numeroCedula,String numeroCuenta){
-
-        if(!servicioCuenta.realizarConsignacion(valor,numeroCedula,numeroCuenta)){
-            return false;
-        }
-        return true;
-    }
+//    private static final Logger logger = LogManager.getLogger(ControladorCuenta.class);
+//
+//    @Autowired
+//    ServicioCuenta servicioCuenta;
+//
+//
+//    @GetMapping({"/cuentas"})
+//    public String listaCuentas(Modelo model){
+//        logger.info("Verificados");
+//        model.addAtribute("cuentas",servicioCuenta.)
+//    }
 
 
-    public boolean transferencia(double valor, String numeroCelular){
-        return servicioCuenta.realizarTransferencia(valor,numeroCelular);
-    }
 
-
-    public Cuenta estadoCuenta(String numeroCedula ,String numeroCuenta){
-        return servicioCuenta.estadoCuenta(numeroCedula, numeroCuenta);
-
-    }
-
-
-    public Boolean retiroCuenta(String numeroCuenta, double valor){
-        return servicioCuenta.retiroCuenta(numeroCuenta,valor);
-    }
 
 
 }

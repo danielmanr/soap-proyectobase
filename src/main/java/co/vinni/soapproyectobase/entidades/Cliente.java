@@ -1,10 +1,8 @@
 package co.vinni.soapproyectobase.entidades;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.context.annotation.Primary;
 
 import java.io.Serializable;
 
@@ -18,9 +16,8 @@ import java.io.Serializable;
 @ToString
 public class Cliente implements Serializable {
     @Id
-    @Column
-    (name = "idCliente", nullable = false)
-    private long idCliente;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idCliente;
     @Column(name = "Nombre", nullable = false)
     private String nombre;
     @Column(name = "Apellido", nullable = false)
