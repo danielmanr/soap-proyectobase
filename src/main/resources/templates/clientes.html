@@ -47,6 +47,7 @@
             <th>Apellidos</th>
             <th>NumeroIdentificacion</th>
             <th>NumeroCelular</th>
+            <th>Acciones</th>
 
         </tr>
         </thead>
@@ -58,8 +59,8 @@
             <td th:text="${dato.numeroIdentificacion}">numero Cedula</td>
             <td th:text="${dato.numeroCelular}">numero Celular</td>
             <td >
-<!--                <a th:href="@{/equipos/modificar/{serial}(serial=${dato.serial})}" class="btn btn-info">Editar</a>-->
-<!--                <a th:href="@{/equipos/{serial}(serial=${dato.serial})}" class="btn btn-danger">Eliminar</a>-->
+                <a th:href="@{/clientes/modificar/{idCliente}(idCliente=${dato.idCliente})}" class="btn btn-info">Editar</a>
+                <a th:href="@{/clientes/{idCliente}(idCliente=${dato.idCliente})}" class="btn btn-danger">Eliminar</a>
             </td>
 
         </tr>

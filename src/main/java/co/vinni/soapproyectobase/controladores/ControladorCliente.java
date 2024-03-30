@@ -26,8 +26,6 @@ public class ControladorCliente {
     public String listarClientes(Model model){
         logger.info("verificados");
         model.addAttribute("clientes",servicioCliente.obtenerClientes());
-        System.out.println("Cositas de los clientes");
-        System.out.println(servicioCliente.obtenerClientes());
         return "clientes";
     }
 
@@ -42,11 +40,30 @@ public class ControladorCliente {
 
     @PostMapping("/clientes")
     public String registrarCliente(@ModelAttribute("cliente") ClienteDto clienteDto) {
-        System.out.println("si esta llegando");
         servicioCliente.registrar(clienteDto);
         return "redirect:/clientes";
     }
 
+
+    @GetMapping("/clientes/{idCliente}")
+    public String eliminarClient(@PathVariable int idCliente){
+        servicioCliente.eliminar(idCliente);
+        return "redirect:/clientes";
+    }
+
+    @GetMapping("/clientes/modificar/{idCliente}")
+    public String mostrarFormularioEditar(@PathVariable int idCliente, Model model){
+        ClienteDto clienteDto = new ClienteDto();
+        model.addAttribute("cliente", servicioCliente.obtenerEquipo(idCliente));
+        return "editar_cliente";
+    }
+
+
+    @PostMapping("/clientes/{idCliente}")
+    public String modificarCliente(@PathVariable int idCliente,@ModelAttribute( "cliente") ClienteDto clienteDto, Model model){
+        model.addAttribute("cliente", servicioCliente.actualizar(clienteDto));
+        return "redirect:/clientes";
+    }
 
 
 
