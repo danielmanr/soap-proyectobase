@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <title>Listado de Equipos</title>
+    <title>Crear de Cuenta</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -24,7 +24,7 @@
                     class="icon-bar"></span> <span class="icon-bar"></span> <span
                     class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="clientes.html" th:href="@{/clientes}">Listado de equipos</a>
+            <a class="navbar-brand" href="#" th:href="@{/clientes}">Listado de equipos</a>
 
         </div>
 
@@ -36,33 +36,43 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <h1>Crear Clientes</h1>
+                <h1>Crear Cuenta a Clientes</h1>
                 <div class="card-body">
-                    <form id="formulario" th:action="@{/clientes}" method="post" th:object="${cliente}">
+                    <div class="form-group">
+                        <label class="control-label" for="nombre">Nombres del Cliente: </label> <input
+                            id="nombre" type="text" class="form-control" th:field="*{cliente.nombre}"
+                            required autofocus="autofocus" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="nombre">Apellidos del Cliente: </label> <input
+                            id="apelldio" type="text" class="form-control" th:field="*{cliente.apellido}"
+                            required autofocus="autofocus" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="numeroIdentificacion">Numero identificacion: </label> <input
+                            id="numeroIdentificacion" type="text" class="form-control" th:field="*{cliente.numeroIdentificacion}"
+                            required autofocus="autofocus" disabled>
+                    </div>
+                    <form id="formulario" th:action="@{/cuentas}" method="post" th:object="${cuenta}">
 
                         <div class="form-group">
-                            <label class="control-label" for="nombre">Nombres: </label> <input
-                                id="nombre" type="text" class="form-control" th:field="*{nombre}"
+                            <label class="control-label" for="numeroDeCuenta">Numero de Cuenta: </label> <input
+                                id="numeroDeCuenta" type="text" class="form-control" th:field="*{numeroDeCuenta}"
                                 required autofocus="autofocus">
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label" for="apellido">Apellidos: </label> <input
-                                id="apellido" type="text" class="form-control" th:field="*{apellido}"
+                            <label class="control-label" for="activa">Estado: </label> <input
+                                id="activa" type="text" class="form-control" th:field="*{activa}"
                                 required autofocus="autofocus">
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label" for="numeroIdentificacion">Numero de identificacion: </label> <input
-                                id="numeroIdentificacion" type="number" class="form-control" th:field="*{numeroIdentificacion}"
+                            <label class="control-label" for="saldo">Saldo: </label> <input
+                                id="saldo" type="number" class="form-control" th:field="*{saldo}"
                                 required autofocus="autofocus">
                         </div>
 
-                        <div class="form-group">
-                            <label class="control-label" for="numeroCelular">Numero de Celular: </label> <input
-                                id="numeroCelular" type="number" class="form-control" th:field="*{numeroCelular}"
-                                required autofocus="autofocus">
-                        </div>
                         <br>
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">Crear Cuenta</button>

@@ -41,7 +41,7 @@ public class ControladorCliente {
     @PostMapping("/clientes")
     public String registrarCliente(@ModelAttribute("cliente") ClienteDto clienteDto) {
         servicioCliente.registrar(clienteDto);
-        return "redirect:/clientes";
+        return "redirect:/cuenta/nuevo";
     }
 
 

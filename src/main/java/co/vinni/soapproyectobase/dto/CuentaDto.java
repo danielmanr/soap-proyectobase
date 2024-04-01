@@ -1,5 +1,9 @@
 package co.vinni.soapproyectobase.dto;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,11 +16,9 @@ import java.io.Serializable;
 @Data
 @ToString
 public class CuentaDto implements Serializable {
-
-    private Long serial;
-    @NotBlank(message = "El nombre es Obligatorio")
-    private String nombre;
-//    @NotBlank(message = "numero de Cedula")
-//    private
-
+    private Long idCuenta;
+    private int idCliente_cuenta;
+    private String numeroDeCuenta;
+    private boolean activa;
+    private double saldo;
 }

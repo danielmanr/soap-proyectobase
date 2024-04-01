@@ -58,4 +58,9 @@ public class ServicioCliente implements Serializable {
         repoCliente.deleteById(id);
     }
 
+
+    public Optional<Cliente> obtenerUtimoCliente(){
+        return repoCliente.findTopByOrderByIdClienteDesc();
+    }
+
 }
