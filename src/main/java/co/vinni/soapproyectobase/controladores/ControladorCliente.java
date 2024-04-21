@@ -1,7 +1,9 @@
 package co.vinni.soapproyectobase.controladores;
 
 import co.vinni.soapproyectobase.dto.ClienteDto;
+import co.vinni.soapproyectobase.dto.CuentaDto;
 import co.vinni.soapproyectobase.entidades.Cliente;
+import co.vinni.soapproyectobase.entidades.Cuenta;
 import co.vinni.soapproyectobase.servicios.ServicioCliente;
 import co.vinni.soapproyectobase.servicios.ServicioCuenta;
 import lombok.extern.log4j.Log4j2;
@@ -20,6 +22,8 @@ public class ControladorCliente {
 
     @Autowired
     private ServicioCliente servicioCliente;
+    @Autowired
+    private ServicioCuenta servicioCuenta;
 
 
     @GetMapping({"/clientes"})
@@ -39,9 +43,11 @@ public class ControladorCliente {
 
 
     @PostMapping("/clientes")
-    public String registrarCliente(@ModelAttribute("cliente") ClienteDto clienteDto) {
-        servicioCliente.registrar(clienteDto);
-        return "redirect:/cuenta/nuevo";
+    public String registrarCliente(@ModelAttribute("cliente") Cliente cliente) {
+        ControladorCuenta controlCuenta = new ControladorCuenta();
+        Cuenta cuenta = controlCuenta.asignacionCuenta();
+        servicioCuenta.guardarCuentaCliente(cliente,cuenta);
+        return "redirect:/clientes";
     }
 
 
@@ -53,7 +59,7 @@ public class ControladorCliente {
 
     @GetMapping("/clientes/modificar/{idCliente}")
     public String mostrarFormularioEditar(@PathVariable int idCliente, Model model){
-        ClienteDto clienteDto = new ClienteDto();
+//        ClienteDto clienteDto = new ClienteDto();
         model.addAttribute("cliente", servicioCliente.obtenerEquipo(idCliente));
         return "editar_cliente";
     }

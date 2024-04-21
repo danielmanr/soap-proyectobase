@@ -20,19 +20,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class ControladorCuenta {
 
     @Autowired
-    private ServicioCliente servicioCliente;
-
-    @Autowired
     private ServicioCuenta servicioCuenta;
 
     @GetMapping("/cuenta/nuevo")
-    public String mostrarFormulario(Model model){
-        CuentaDto cuentaDto = new CuentaDto();
-        model.addAttribute("cliente", servicioCliente.obtenerUtimoCliente());
-        System.out.println("aca trae al cliente");
-        System.out.println(model.addAttribute("cliente", servicioCliente.obtenerUtimoCliente()));
-        model.addAttribute("cuenta",cuentaDto);
-        return "crear_cuenta";
+    public Cuenta asignacionCuenta(){
+        Cuenta cuenta = new Cuenta();
+        ServicioCuenta scuenta = new ServicioCuenta();
+        String numerocuenta = scuenta.generarNumeroCuenta();
+        cuenta.setNumeroDeCuenta(numerocuenta);
+        cuenta.setSaldo(0);
+        cuenta.setActiva(true);
+        return cuenta;
     }
 
 

@@ -1,14 +1,15 @@
 package co.vinni.soapproyectobase.entidades;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Setter
+@Getter
 @Entity(name = "Cuenta")
 @Table(name = "Cuentas")
 public class Cuenta implements Serializable {
@@ -16,14 +17,19 @@ public class Cuenta implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCuenta;
-    @Column(name = "idCliente_cuenta", nullable = false)
-    private int idCliente_cuenta;
+
     @Column(name = "NumeroCuenta", nullable = false)
     private String numeroDeCuenta;
+
     @Column(name = "Activa", nullable = false)
     private boolean activa;
+
     @Column(name = "Saldo", nullable = false)
     private double saldo;
 
+    // La relación uno a uno con el cliente
+    @OneToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
 
 }

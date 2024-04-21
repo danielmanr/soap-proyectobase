@@ -32,11 +32,10 @@ public class ServicioCliente implements Serializable {
 
     private final RepositorioCliente repoCliente;
 
-    public ClienteDto registrar(ClienteDto clienteDto) {
-
-        Cliente elCliente = repoCliente.save(modelMapper.map(clienteDto, Cliente.class));
-        return modelMapper.map(elCliente, ClienteDto.class);
-    }
+//    public ClienteDto registrarClienteConCuenta(Cliente cliente, Cuenta cuenta) {
+//        Cliente elCliente = repoCliente.save(modelMapper.map(cliente, Cliente.class));
+//        return modelMapper.map(elCliente, ClienteDto.class);
+//    }
     public List<ClienteDto> obtenerClientes() {
         TypeToken<List<ClienteDto>> typeToken = new TypeToken<>() {};
         return modelMapper.map(repoCliente.findAll(), typeToken.getType());

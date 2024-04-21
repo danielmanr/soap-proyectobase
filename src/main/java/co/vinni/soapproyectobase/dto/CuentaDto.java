@@ -1,5 +1,6 @@
 package co.vinni.soapproyectobase.dto;
 
+import co.vinni.soapproyectobase.entidades.Cliente;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,8 +18,8 @@ import java.io.Serializable;
 @ToString
 public class CuentaDto implements Serializable {
     private Long idCuenta;
-    private int idCliente_cuenta;
     private String numeroDeCuenta;
     private boolean activa;
     private double saldo;
+    private Cliente cliente;
 }
