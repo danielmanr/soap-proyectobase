@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -31,5 +33,8 @@ public class Cuenta implements Serializable {
     @OneToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "cuenta", cascade = CascadeType.ALL)
+    private List<Producto> productos = new ArrayList<>();
 
 }

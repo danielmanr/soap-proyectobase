@@ -34,49 +34,37 @@
 <br>
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-auto">
-            <!-- Botón 1 -->
-            <a class="btn btn-primary" href="#" th:href="@{/clientes/nuevo}">Crear Cliente</a>
-        </div>
-        <div class="col-md-auto">
-            <!-- Botón 2 -->
-            <a class="btn btn-primary" href="#" th:href="@{/clientes/nuevo}">Lista de Productos</a>
-        </div>
-        <div class="col-md-auto">
-            <!-- Botón 2 -->
-            <a class="btn btn-primary" href="#" th:href="@{/productos/nuevo}">Crear un Producto</a>
-        </div>
+    <div class="col-md-auto">
+        <!-- Botón 2 -->
+        <a class="btn btn-primary" href="#" th:href="@{/productos/nuevo}">Crear un Producto</a>
     </div>
+    <div class="my-4">
+        <table class="mt-3 table table-striped table-bordered">
+            <thead class="table-dark">
+            <tr>
+                <th>idProducto</th>
+                <th>Tipo</th>
+                <th>Capacidad</th>
+                <th>Franquicia</th>
+                <th>Acciones</th>
 
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="dato : ${productos}">
+                <td th:text="${dato.idProducto}">Serial</td>
+                <td th:text="${dato.tipo}">nombre</td>
+                <td th:text="'$'+${dato.Capacidad}">Capacidad</td>
+                <td th:text="${dato.Franquicia}">Franquicia</td>
+                <td >
+                    <a class="btn btn-info">Editar</a>
+                    <a class="btn btn-danger">Eliminar</a>
+                </td>
 
-    <table class="mt-3 table table-striped table-bordered">
-        <thead class="table-dark">
-        <tr>
-            <th>idClientes</th>
-            <th>Nombre</th>
-            <th>Apellidos</th>
-            <th>NumeroIdentificacion</th>
-            <th>NumeroCelular</th>
-            <th>Acciones</th>
-
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="dato : ${clientes}">
-            <td th:text="${dato.idCliente}">Serial</td>
-            <td th:text="${dato.nombre}">nombre</td>
-            <td th:text="${dato.apellido}">apellido</td>
-            <td th:text="${dato.numeroIdentificacion}">numero Cedula</td>
-            <td th:text="${dato.numeroCelular}">numero Celular</td>
-            <td >
-                <a th:href="@{/clientes/modificar/{idCliente}(idCliente=${dato.idCliente})}" class="btn btn-info">Editar</a>
-                <a th:href="@{/clientes/{idCliente}(idCliente=${dato.idCliente})}" class="btn btn-danger">Eliminar</a>
-            </td>
-
-        </tr>
-        </tbody>
-    </table>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 <script
         src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
