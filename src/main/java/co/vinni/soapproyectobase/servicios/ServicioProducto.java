@@ -3,7 +3,9 @@ package co.vinni.soapproyectobase.servicios;
 
 import co.vinni.soapproyectobase.dto.ClienteDto;
 import co.vinni.soapproyectobase.dto.ProductoDto;
+import co.vinni.soapproyectobase.entidades.Cliente;
 import co.vinni.soapproyectobase.entidades.Producto;
+import co.vinni.soapproyectobase.exception.ResourceNotFoundException;
 import co.vinni.soapproyectobase.repositorios.RepositorioCliente;
 import co.vinni.soapproyectobase.repositorios.RepositorioProducto;
 import lombok.AllArgsConstructor;
@@ -30,11 +32,25 @@ public class ServicioProducto {
     }
 
 
-    public List<ProductoDto> obtenerEquipos() {
+    public List<ProductoDto> obtenerProductos() {
         TypeToken<List<ProductoDto>> typeToken = new TypeToken<>() {
         };
         return modelMapper.map(repoProducto.findAll(), typeToken.getType());
+    }
 
+    public Producto obtenerProductoById(Long id) {
+        return repoProducto.getReferenceById(id);
+    }
+
+
+    public ProductoDto actualizar(ProductoDto productoDto) {
+        repoProducto.save(modelMapper.map(productoDto, Producto.class));
+        return productoDto;
+    }
+
+
+    public void eliminar(long id) {
+        repoProducto.deleteById(id);
     }
 
 

@@ -2,10 +2,13 @@ package co.vinni.soapproyectobase.controladores;
 
 import co.vinni.soapproyectobase.dto.ClienteDto;
 import co.vinni.soapproyectobase.dto.CuentaDto;
+import co.vinni.soapproyectobase.dto.ProductoDto;
 import co.vinni.soapproyectobase.entidades.Cliente;
 import co.vinni.soapproyectobase.entidades.Cuenta;
+import co.vinni.soapproyectobase.entidades.Producto;
 import co.vinni.soapproyectobase.servicios.ServicioCliente;
 import co.vinni.soapproyectobase.servicios.ServicioCuenta;
+import co.vinni.soapproyectobase.servicios.ServicioProducto;
 import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,6 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Log4j2
 @Controller
@@ -24,6 +30,8 @@ public class ControladorCliente {
     private ServicioCliente servicioCliente;
     @Autowired
     private ServicioCuenta servicioCuenta;
+    @Autowired
+    private ServicioProducto servicioProducto;
 
 
     @GetMapping({"/clientes"})
@@ -37,16 +45,45 @@ public class ControladorCliente {
     @GetMapping("/clientes/nuevo")
     public String mostrarFormulario(Model model){
         ClienteDto clienteDto = new ClienteDto();
+        List<ProductoDto> listaProductos = servicioProducto.obtenerProductos();
         model.addAttribute("cliente",clienteDto);
+        model.addAttribute("listaProductos",listaProductos);
         return "Crear_cliente";
     }
 
 
     @PostMapping("/clientes")
-    public String registrarCliente(@ModelAttribute("cliente") Cliente cliente) {
+    public String registrarCliente(@ModelAttribute("cliente") Cliente cliente, @RequestParam("idProducto") List<Long> idProductos) {
         ControladorCuenta controlCuenta = new ControladorCuenta();
         Cuenta cuenta = controlCuenta.asignacionCuenta();
-        servicioCuenta.guardarCuentaCliente(cliente,cuenta);
+
+        // Verificar si la lista de productos de la cuenta es nula
+        if (cuenta.getProductos() == null) {
+            cuenta.setProductos(new ArrayList<>());
+        }
+
+        // Obtener el producto seleccionado
+        for (Long idProducto : idProductos) {
+            // Obtener el producto correspondiente al identificador
+            Producto productoSeleccionado = servicioProducto.obtenerProductoById(idProducto);
+
+            // Asociar el producto a la cuenta
+            productoSeleccionado.setCuenta(cuenta);
+
+            // Agregar el producto a la lista de productos de la cuenta
+            cuenta.getProductos().add(productoSeleccionado);
+        }
+
+
+        // Asignar la cuenta al cliente
+        cliente.setCuenta(cuenta);
+
+        // Guardar la cuenta y el cliente
+        servicioCuenta.guardarCuentaCliente(cliente, cuenta);
+
+
+
+
         return "redirect:/clientes";
     }
 

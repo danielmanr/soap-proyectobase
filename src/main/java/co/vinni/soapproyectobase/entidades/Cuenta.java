@@ -34,7 +34,8 @@ public class Cuenta implements Serializable {
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "cuenta", cascade = CascadeType.ALL)
-    private List<Producto> productos = new ArrayList<>();
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "cuenta_id")
+    private List<Producto> productos;
 
 }

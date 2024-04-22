@@ -42,8 +42,8 @@ public class ServicioCliente implements Serializable {
                 ResourceNotFoundException::new);
 
         return modelMapper.map(cliente, ClienteDto.class);
-
     }
+
     public ClienteDto actualizar(ClienteDto clienteDto) {
         repoCliente.save(modelMapper.map(clienteDto, Cliente.class));
         return clienteDto;

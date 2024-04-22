@@ -57,8 +57,8 @@
                 <td th:text="'$'+${dato.Capacidad}">Capacidad</td>
                 <td th:text="${dato.Franquicia}">Franquicia</td>
                 <td >
-                    <a class="btn btn-info">Editar</a>
-                    <a class="btn btn-danger">Eliminar</a>
+                    <a th:href="@{/productos/modificar/{idProducto}(idProducto=${dato.idProducto})}" class="btn btn-info">Editar</a>
+                    <a th:href="@{/productos/{idProducto}(idProducto=${dato.idProducto})}" class="btn btn-danger">Eliminar</a>
                 </td>
 
             </tr>

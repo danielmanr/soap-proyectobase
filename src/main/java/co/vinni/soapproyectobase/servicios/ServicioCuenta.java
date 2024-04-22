@@ -4,6 +4,7 @@ import co.vinni.soapproyectobase.dto.ClienteDto;
 import co.vinni.soapproyectobase.dto.CuentaDto;
 import co.vinni.soapproyectobase.entidades.Cliente;
 import co.vinni.soapproyectobase.entidades.Cuenta;
+import co.vinni.soapproyectobase.entidades.Producto;
 import co.vinni.soapproyectobase.repositorios.RepositorioCliente;
 import co.vinni.soapproyectobase.repositorios.RepositorioCuenta;
 import co.vinni.soapproyectobase.utilidades.UtilidadArchivos;
@@ -37,11 +38,6 @@ public class ServicioCuenta implements Serializable {
         repoCliente.save(cliente);
         cuenta.setCliente(cliente);
         return repoCuenta.save(cuenta);
-//        Cuenta LaCuenta = repoCuenta.save(modelMapper.map(cuentaDto,Cuenta.class));
-//        return modelMapper.map(LaCuenta, Cuenta.class);
-//        Cliente elCliente = repoCliente.save(modelMapper.map(cliente, Cliente.class));
-//        return modelMapper.map(elCliente, ClienteDto.class);
-
     }
 
 

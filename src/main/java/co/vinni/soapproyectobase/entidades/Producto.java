@@ -29,7 +29,7 @@ public class Producto implements Serializable {
     private String franquicia;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "cuenta_id")
+    @JoinColumn(name = "idCuenta")
     private Cuenta cuenta;
 
 
