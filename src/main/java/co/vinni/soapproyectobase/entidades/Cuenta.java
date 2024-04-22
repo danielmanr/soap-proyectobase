@@ -34,8 +34,13 @@ public class Cuenta implements Serializable {
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "cuenta_id")
-    private List<Producto> productos;
+
+    @ManyToMany
+    @JoinTable(
+            name = "cuenta_transaccion",
+            joinColumns = @JoinColumn(name = "cuenta_id"),
+            inverseJoinColumns = @JoinColumn(name = "transaccion_id")
+    )
+    private List<Transaccion> transacciones;
 
 }
